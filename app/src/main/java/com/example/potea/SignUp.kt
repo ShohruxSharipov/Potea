@@ -1,13 +1,21 @@
 package com.example.potea
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
+import com.example.potea.User.User
 import com.example.potea.databinding.FragmentSignInBinding
 import com.example.potea.databinding.FragmentSignUpBinding
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,15 +40,42 @@ class SignUp : Fragment() {
         }
     }
 
+    @SuppressLint("CommitPrefEdits")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentSignUpBinding.inflate(inflater,container,false)
+        val type = object : TypeToken<List<User>>() {}.type
+        val gson = Gson()
+
+        val activity : AppCompatActivity = activity as AppCompatActivity
+        val cache = activity.getSharedPreferences("Cache", Context.MODE_PRIVATE)
+        val edit = cache.edit()
+        var list = mutableListOf<User>()
+
+
+
+
 
         binding.textView8.setOnClickListener {
             findNavController().navigate(R.id.action_signUp_to_signIn)
         }
+
+        binding.next1.setOnClickListener {
+            val str = cache.getString("user","")
+            list = gson.fromJson(str,type)
+            val a = list[0]
+            Log.d("TAG", "onCreateView: ${a.login}  ${a.pasword}")
+
+                if (a.login == binding.log.text.toString() && a.pasword == binding.pass.text.toString() ){
+                    Toast.makeText(requireContext(), "True", Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    Toast.makeText(requireContext(), "false", Toast.LENGTH_SHORT).show()
+                }
+            }
+
 
         return binding.root
     }

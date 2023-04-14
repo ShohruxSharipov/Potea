@@ -1,5 +1,6 @@
 package com.example.potea
 
+import android.annotation.SuppressLint
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -9,7 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
+import com.example.potea.User.User
 import com.example.potea.databinding.FragmentSignInBinding
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 
 private const val ARG_PARAM1 = "param1"
@@ -27,6 +31,7 @@ class SignIn : Fragment() {
         }
     }
 
+    @SuppressLint("CommitPrefEdits")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,9 +42,24 @@ class SignIn : Fragment() {
             findNavController().navigate(R.id.action_signIn_to_signUp)
         }
 
+        val type = object : TypeToken<List<User>>() {}.type
+        val gson = Gson()
 
-//        val activity :  AppCompatActivity
-//        val cache = activity.getSharedPreferences("Cache", MODE_PRIVATE)
+        val activity :  AppCompatActivity = activity as AppCompatActivity
+        val cache = activity.getSharedPreferences("Cache", MODE_PRIVATE)
+        val edit = cache.edit()
+        val list = mutableListOf<User>()
+
+        binding.next1.setOnClickListener {
+            val login : String = binding.login.text.toString()
+            val pasword : String = binding.password.text.toString()
+            val user = User(login, pasword)
+            list.add(user)
+            val u1 = gson.toJson(list)
+            edit.putString("user",u1).apply()
+            findNavController().navigate(R.id.action_signIn_to_signUp)
+
+        }
 
         return binding.root
     }
