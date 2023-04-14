@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import com.example.potea.databinding.FragmentCheckInBinding
+import com.example.potea.databinding.FragmentSplash2Binding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,20 +36,20 @@ class CheckIn : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_check_in, container, false)
+        val binding = FragmentCheckInBinding.inflate(inflater,container,false)
+
+        binding.next1.setOnClickListener {
+            findNavController().navigate(R.id.action_checkIn_to_signUp)
+        }
+        binding.textView7.setOnClickListener {
+            findNavController().navigate(R.id.action_checkIn_to_signIn)
+        }
+
+
+        return binding.root
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CheckIn.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             CheckIn().apply {

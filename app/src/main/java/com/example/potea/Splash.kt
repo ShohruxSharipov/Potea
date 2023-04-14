@@ -1,10 +1,13 @@
 package com.example.potea
 
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,7 +36,9 @@ class Splash : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        val handler = Handler()
+        handler.postDelayed({
+            findNavController().navigate(R.id.action_splash_to_splash1)},5000)
         return inflater.inflate(R.layout.fragment_splash, container, false)
     }
 
