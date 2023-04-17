@@ -1,10 +1,15 @@
 package com.example.potea
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.OnBackPressedDispatcher
+import androidx.appcompat.app.AppCompatActivity
+import com.example.potea.Plant.Plant
 import com.example.potea.databinding.FragmentItemBinding
 
 private const val ARG_PARAM1 = "param1"
@@ -28,7 +33,14 @@ class ItemFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentItemBinding.inflate(inflater,container,false)
-
+        val item = arguments?.getSerializable("item") as Plant
+        binding.name.text = item.name
+        binding.imageView13.setImageResource(item.img)
+        binding.cost.text = item.cost
+        binding.back.setOnClickListener {
+            val activity : AppCompatActivity = activity as AppCompatActivity
+            activity.onBackPressedDispatcher.onBackPressed()
+        }
         return binding.root
     }
 

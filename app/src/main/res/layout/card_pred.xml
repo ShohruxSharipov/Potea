@@ -11,7 +11,7 @@
 
 
     <ImageView
-        android:id="@+id/imageView9"
+        android:id="@+id/image"
         android:layout_width="142dp"
         android:layout_height="166dp"
         android:layout_marginStart="16dp"
@@ -24,16 +24,15 @@
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:text="Prayer plant"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView9"
-        app:layout_constraintTop_toTopOf="@+id/imageView9" />
+        app:layout_constraintStart_toEndOf="@+id/image"
+        app:layout_constraintTop_toTopOf="@+id/image" />
 
     <TextView
         android:id="@+id/cost"
@@ -62,7 +61,7 @@
         android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView9"
+        app:layout_constraintBottom_toBottomOf="@+id/image"
         app:layout_constraintStart_toStartOf="@+id/cost"
         app:layout_constraintTop_toBottomOf="@+id/cost">
 
@@ -73,7 +72,7 @@
             android:layout_gravity="start"
             android:text="—"
             android:textColor="#1DD14A"
-            android:textSize="25sp" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/count"
@@ -82,7 +81,7 @@
             android:layout_gravity="center"
             android:text="0"
             android:textColor="#1DD14A"
-            android:textSize="20sp" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/plus"
@@ -91,7 +90,7 @@
             android:layout_gravity="end"
             android:text="+"
             android:textColor="#1DD14A"
-            android:textSize="25sp" />
+            android:textSize="30sp" />
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

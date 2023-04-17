@@ -5,10 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Home">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="0dp"
-    app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+    app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
     app:layout_constraintTop_toTopOf="parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,7 +31,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/imageView7"
+                android:id="@+id/userimg"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 tools:layout_editor_absoluteX="121dp"
@@ -48,7 +51,7 @@
             app:layout_constraintTop_toTopOf="@+id/cardView" />
 
         <TextView
-            android:id="@+id/textView13"
+            android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -61,8 +64,8 @@
 
         <ImageView
             android:id="@+id/imageView11"
-            android:layout_width="35dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginStart="115dp"
             android:layout_marginTop="8dp"
             android:src="@drawable/notification"
@@ -70,9 +73,9 @@
             app:layout_constraintTop_toTopOf="@+id/textView12" />
 
         <ImageView
-            android:id="@+id/imageView12"
-            android:layout_width="34dp"
-            android:layout_height="29dp"
+            android:id="@+id/wishlist"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="24dp"
             android:src="@drawable/baseline_favorite_border_24"
@@ -82,14 +85,15 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout"
-            style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox.Dense"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="24dp"
             android:hint="Search"
-            app:boxBackgroundColor="#70E6E3E3"
+            app:boxBackgroundColor="#1100BCD4"
+            app:boxStrokeColor="@color/yashil"
             app:boxCornerRadiusBottomEnd="20dp"
             app:boxCornerRadiusBottomStart="20dp"
             app:boxCornerRadiusTopEnd="20dp"
@@ -97,10 +101,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView13"
+            app:layout_constraintTop_toBottomOf="@+id/username"
             app:startIconDrawable="@drawable/search">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/search"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -119,7 +124,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
         <TextView
-            android:id="@+id/textView15"
+            android:id="@+id/seeall1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
@@ -138,7 +143,7 @@
             android:layout_marginTop="8dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="@+id/textView15"
+            app:layout_constraintEnd_toEndOf="@+id/seeall1"
             app:layout_constraintStart_toStartOf="@+id/textView14"
             app:layout_constraintTop_toBottomOf="@+id/textView14"
             tools:listitem="@layout/specialoffers" />
@@ -155,7 +160,7 @@
             app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
         <TextView
-            android:id="@+id/textView24"
+            android:id="@+id/seeall2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
@@ -168,23 +173,27 @@
             app:layout_constraintTop_toTopOf="@+id/textView22" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
+            android:id="@+id/recyclerView2"
+            android:layout_width="450dp"
             android:layout_height="wrap_content"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView22"
             app:spanCount="2"
             tools:itemCount="8"
-            tools:layout_editor_absoluteX="0dp"
             tools:listitem="@layout/specialoffers" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
+        android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/menu"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

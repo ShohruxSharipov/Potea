@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_splash_to_splash1"
             app:destination="@id/splash1" />
+        <action
+            android:id="@+id/action_splash_to_pinFrag"
+            app:destination="@id/pinFrag" />
     </fragment>
     <fragment
         android:id="@+id/splash1"
@@ -94,6 +97,9 @@
         <action
             android:id="@+id/action_pinFrag_to_fingerPrint"
             app:destination="@id/fingerPrint" />
+        <action
+            android:id="@+id/action_pinFrag_to_home2"
+            app:destination="@id/home2" />
     </fragment>
     <fragment
         android:id="@+id/fingerPrint"
@@ -108,5 +114,32 @@
         android:id="@+id/home2"
         android:name="com.example.potea.Home"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home2_to_myWishlist"
+            app:destination="@id/myWishlist" />
+        <argument android:name="WishlisT" />
+        <action
+            android:id="@+id/action_home2_to_itemFragment"
+            app:destination="@id/itemFragment" />
+        <action
+            android:id="@+id/action_home2_to_cardFragment"
+            app:destination="@id/cardFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/myWishlist"
+        android:name="com.example.potea.MyWishlist"
+        android:label="fragment_my_wishlist"
+        tools:layout="@layout/fragment_my_wishlist" />
+    <fragment
+        android:id="@+id/itemFragment"
+        android:name="com.example.potea.ItemFragment"
+        android:label="fragment_item"
+        tools:layout="@layout/fragment_item" />
+    <fragment
+        android:id="@+id/cardFragment"
+        android:name="com.example.potea.CardFragment"
+        android:label="fragment_card"
+        tools:layout="@layout/fragment_card" />
 </navigation>

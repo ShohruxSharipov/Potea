@@ -1,24 +1,21 @@
 package com.example.potea
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
 import com.example.potea.databinding.FragmentPinBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [PinFrag.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class PinFrag : Fragment() {
-    // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
@@ -34,23 +31,31 @@ class PinFrag : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val bind = FragmentPinBinding.inflate(inflater,container,false)
-        if (bind.firstPinView.text!!.length == 4){
-         //
+        val binding = FragmentPinBinding.inflate(inflater,container,false)
+        val activity : AppCompatActivity = activity as AppCompatActivity
+        val cache = activity.getSharedPreferences("Cache", Context.MODE_PRIVATE)
+        val edit = cache.edit()
+
+        var pin = cache.getString("code","")
+
+
+        binding.next1.setOnClickListener {
+            if (pin == ""){
+                cache.edit().putString("code",binding.firstPinView.text.toString()).commit()
+                Toast.makeText(requireContext(), "SERROR", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_pinFrag_to_fingerPrint)
+            }else if (pin == binding.firstPinView.text.toString()){
+                findNavController().navigate(R.id.action_pinFrag_to_home2)
+            }else Toast.makeText(requireContext(), "ERROR", Toast.LENGTH_SHORT).show()
         }
-        return inflater.inflate(R.layout.fragment_pin, container, false)
+
+
+
+        return binding.root
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment PinFrag.
-         */
-        // TODO: Rename and change types and number of parameters
+
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             PinFrag().apply {

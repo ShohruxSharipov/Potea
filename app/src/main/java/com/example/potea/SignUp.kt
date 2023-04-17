@@ -40,16 +40,16 @@ class SignUp : Fragment() {
         }
     }
 
-    @SuppressLint("CommitPrefEdits")
+    @SuppressLint("CommitPrefEdits", "SuspiciousIndentation")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentSignUpBinding.inflate(inflater,container,false)
+        val binding = FragmentSignUpBinding.inflate(inflater, container, false)
         val type = object : TypeToken<List<User>>() {}.type
         val gson = Gson()
 
-        val activity : AppCompatActivity = activity as AppCompatActivity
+        val activity: AppCompatActivity = activity as AppCompatActivity
         val cache = activity.getSharedPreferences("Cache", Context.MODE_PRIVATE)
         val edit = cache.edit()
         var list = mutableListOf<User>()
@@ -63,18 +63,24 @@ class SignUp : Fragment() {
         }
 
         binding.next1.setOnClickListener {
-            val str = cache.getString("user","")
-            list = gson.fromJson(str,type)
-            val a = list[0]
-            Log.d("TAG", "onCreateView: ${a.login}  ${a.pasword}")
+            val str = cache.getString("user", "")
+            if (str == "") {
+                Toast.makeText(requireContext(), "register", Toast.LENGTH_SHORT).show()
+            } else {
+                list = gson.fromJson(str, type)
+                val a = list[0]
 
-                if (a.login == binding.log.text.toString() && a.pasword == binding.pass.text.toString() ){
-                    Toast.makeText(requireContext(), "True", Toast.LENGTH_SHORT).show()
-                }
-                else{
-                    Toast.makeText(requireContext(), "false", Toast.LENGTH_SHORT).show()
+                if (a.login == binding.log.text.toString() && a.pasword == binding.pass.text.toString()) {
+                    findNavController().navigate(R.id.action_signUp_to_fillProfile)
+
+                    Toast.makeText(
+                        requireContext(),
+                        "wrong password or login",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
+        }
 
 
         return binding.root

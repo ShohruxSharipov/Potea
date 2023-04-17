@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.potea.Plant.Plant
+import com.example.potea.adapter.Card_adapter
+import com.example.potea.databinding.FragmentCardBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,8 +36,20 @@ class CardFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_card, container, false)
+        val bind = FragmentCardBinding.inflate(inflater,container,false)
+        var list = mutableListOf<Plant>()
+        list.add(Plant("Peperomiya","30",R.drawable.prayerplant,false))
+        list.add(Plant("Peperomiya","30",R.drawable.prayerplant,false))
+        list.add(Plant("Peperomiya","30",R.drawable.prayerplant,false))
+        list.add(Plant("Peperomiya","30",R.drawable.prayerplant,false))
+        list.add(Plant("Peperomiya","30",R.drawable.prayerplant,false))
+        list.add(Plant("Peperomiya","30",R.drawable.prayerplant,false))
+        val a = Card_adapter(list)
+        bind.recyclerView2.adapter = a
+
+
+
+        return bind.root
     }
 
     companion object {

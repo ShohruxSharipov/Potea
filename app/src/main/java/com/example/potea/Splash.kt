@@ -1,13 +1,19 @@
 package com.example.potea
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import com.example.potea.User.Person
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,13 +38,32 @@ class Splash : Fragment() {
         }
     }
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val type = object : TypeToken<List<Person>>() {}.type
+        val gson = Gson()
+        val activity : AppCompatActivity = activity as AppCompatActivity
+        val cache = activity.getSharedPreferences("Cache", Context.MODE_PRIVATE)
+        val edit = cache.edit()
+        var b = mutableListOf<Person>()
+
+        var a = cache.getString("Profile","")
         val handler = Handler()
-        handler.postDelayed({
-            findNavController().navigate(R.id.action_splash_to_splash1)},5000)
+        if (a == "") {
+                handler.postDelayed({
+                    findNavController().navigate(R.id.action_splash_to_splash1)
+                }, 5000)}
+        else{
+
+                handler.postDelayed({
+                    findNavController().navigate(R.id.action_splash_to_pinFrag)
+                }, 5000)
+            }
+
+
         return inflater.inflate(R.layout.fragment_splash, container, false)
     }
 
