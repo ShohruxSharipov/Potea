@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import com.example.potea.databinding.FragmentFillProfileBinding
+import com.google.gson.internal.bind.ReflectiveTypeAdapterFactory.Adapter
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,8 +36,11 @@ class FillProfile : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fill_profile, container, false)
+
+//        var state = mutableListOf<String>("+998","+1","+167","+8","+23","+265","+1003","+93","+999")
+//        var a = ArrayAdapter<String>(requireContext(),android.R.layout.simple_list_item_1,state)
+//        binding.spinner.adapter = a
+        return FragmentFillProfileBinding.inflate(inflater,container,false).root
     }
 
     companion object {

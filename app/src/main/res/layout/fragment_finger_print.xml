@@ -87,60 +87,21 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/skip"
         app:layout_constraintTop_toTopOf="@+id/skip" />
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#97000000"
-    android:visibility="invisible">
 
-    <androidx.cardview.widget.CardView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="430dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_gravity="center"
+        android:layout_height="match_parent"
+        android:layout_marginTop="-30dp"
+        android:background="#97000000"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:cardCornerRadius="30dp">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/congratulations"
-            android:layout_gravity="center|top"
-            android:layout_marginTop="20dp"/>
-
-        <TextView
-            android:id="@+id/textView16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Congratulations !"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"/>
-
-        <TextView
-            android:id="@+id/textView17"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Your account is ready to use. You will \n be redirected to the Home page in  a \n
-                        few seconds"
-            android:layout_gravity="center"
-            android:layout_marginTop="80dp"
-            />
-
-        <ImageView
-            android:id="@+id/imageView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/download"
-            android:layout_gravity="center|bottom"
-            android:layout_marginBottom="20dp"/>
-
-    </androidx.cardview.widget.CardView>
-</FrameLayout>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/congratualtions" />
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

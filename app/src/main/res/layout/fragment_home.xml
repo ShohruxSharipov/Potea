@@ -61,8 +61,8 @@
 
         <ImageView
             android:id="@+id/imageView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="35dp"
+            android:layout_height="30dp"
             android:layout_marginStart="115dp"
             android:layout_marginTop="8dp"
             android:src="@drawable/notification"
@@ -71,8 +71,8 @@
 
         <ImageView
             android:id="@+id/imageView12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="34dp"
+            android:layout_height="29dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="24dp"
             android:src="@drawable/baseline_favorite_border_24"
@@ -170,10 +170,11 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:spanCount="2"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintTop_toBottomOf="@+id/textView22"
+            app:spanCount="2"
             tools:itemCount="8"
+            tools:layout_editor_absoluteX="0dp"
             tools:listitem="@layout/specialoffers" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
