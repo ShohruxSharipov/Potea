@@ -4,7 +4,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.potea.I.Item
 import com.example.potea.Plant.Plant
 import com.example.potea.databinding.CardPredBinding
 

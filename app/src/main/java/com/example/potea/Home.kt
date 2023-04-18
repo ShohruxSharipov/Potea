@@ -76,8 +76,13 @@ class Home : Fragment() {
         binding.recyclerView.adapter = adapter
         binding.recyclerView2.adapter = adapter
 
+        var wishlist = mutableListOf<Plant>()
+        for (i in list){
+            if (i.like == true){
+                wishlist.add(i)
+            }
+        }
         binding.wishlist.setOnClickListener {
-            var wishlist = mutableListOf<Plant>()
             for (i in list){
                 if (i.like == true){
                     wishlist.add(i)

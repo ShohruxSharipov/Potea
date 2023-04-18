@@ -36,7 +36,7 @@
                 android:layout_height="60dp"
                 tools:layout_editor_absoluteX="121dp"
                 tools:layout_editor_absoluteY="29dp"
-                tools:src="@tools:sample/avatars" />
+                android:background="@drawable/amaki"/>
 
         </androidx.cardview.widget.CardView>
 

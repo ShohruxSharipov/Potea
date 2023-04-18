@@ -46,10 +46,12 @@ class Adapter(var list:MutableList<Plant>,var context:Context, var itemclick:Ite
                 holder.like.setImageResource(R.drawable.favorite)
                 holder.like.startAnimation(anim)
                 plant.like = true
+                notifyDataSetChanged()
             }else {
                 holder.like.setImageResource(R.drawable.baseline_favorite_border_24)
                 holder.like.startAnimation(anim)
                 plant.like = false
+                notifyDataSetChanged()
             }
 
         }
