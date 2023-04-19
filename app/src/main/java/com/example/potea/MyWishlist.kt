@@ -52,7 +52,7 @@ class MyWishlist : Fragment() {
         val adapter = com.example.potea.adapter.adapter2(list, requireContext(),object : com.example.potea.adapter.Adapter.ItemClick{
             override fun OnItemClick(plant: Plant) {
                 val item = bundleOf("item" to plant)
-                findNavController().navigate(R.id.action_home2_to_itemFragment, item)
+                findNavController().navigate(R.id.action_bottomNav_to_myWishlist, item)
             }})
         val adapter2 = ButtonAdapter(btns)
         binding.recyclerView.adapter = adapter2

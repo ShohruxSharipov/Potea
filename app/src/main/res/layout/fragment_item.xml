@@ -82,9 +82,10 @@
         android:backgroundTint="#1DD14A"
         android:text="Add to cart"
         app:cornerRadius="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView33"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView32" />
+        app:layout_constraintTop_toTopOf="@+id/textView32"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView34"

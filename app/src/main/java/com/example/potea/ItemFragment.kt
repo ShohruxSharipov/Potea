@@ -1,5 +1,6 @@
 package com.example.potea
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,7 +11,10 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedDispatcher
 import androidx.appcompat.app.AppCompatActivity
 import com.example.potea.Plant.Plant
+import com.example.potea.User.User
 import com.example.potea.databinding.FragmentItemBinding
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -41,6 +45,38 @@ class ItemFragment : Fragment() {
             val activity : AppCompatActivity = activity as AppCompatActivity
             activity.onBackPressedDispatcher.onBackPressed()
         }
+
+
+        val type = object : TypeToken<List<Plant>>() {}.type
+        val gson = Gson()
+
+        val activity :  AppCompatActivity = activity as AppCompatActivity
+        val cache = activity.getSharedPreferences("Cache", Context.MODE_PRIVATE)
+        val edit = cache.edit()
+
+        var str = cache.getString("card","")
+        var card_list = mutableListOf<Plant>()
+        Log.d("TAG", "onCreateView: ${str}")
+        binding.button.setOnClickListener{
+            if (str != ""){
+                Toast.makeText(requireContext(), "topdi", Toast.LENGTH_SHORT).show()
+                card_list = gson.fromJson(str,type)
+                card_list.add(item)
+                var a = gson.toJson(card_list)
+                edit.putString("card",a).apply()
+                Toast.makeText(requireContext(), "Added", Toast.LENGTH_SHORT).show()
+            }else {
+                Toast.makeText(requireContext(), "topolmadi", Toast.LENGTH_SHORT).show()
+                card_list.add(item)
+                var a = gson.toJson(card_list)
+                edit.putString("card",a).apply()
+                Toast.makeText(requireContext(), "1st item", Toast.LENGTH_SHORT).show()
+            }
+            Log.d("TAG", "CARD_LIST: ${card_list.toString()}")
+        }
+
+
+
         return binding.root
     }
 

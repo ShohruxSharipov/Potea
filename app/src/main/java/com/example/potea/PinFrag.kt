@@ -45,7 +45,7 @@ class PinFrag : Fragment() {
 //                Toast.makeText(requireContext(), "SERROR", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_pinFrag_to_fingerPrint)
             }else if (pin == binding.firstPinView.text.toString()){
-                findNavController().navigate(R.id.action_pinFrag_to_home2)
+                findNavController().navigate(R.id.action_pinFrag_to_bottomNav)
             }else Toast.makeText(requireContext(), "ERROR", Toast.LENGTH_SHORT).show()
         }
 

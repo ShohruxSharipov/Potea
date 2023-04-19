@@ -51,7 +51,7 @@
         android:layout_height="60dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="32dp"
         android:backgroundTint="@color/yashil"
         android:text="Checkout ->"
         app:cornerRadius="30dp"

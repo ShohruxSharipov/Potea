@@ -98,8 +98,8 @@
             android:id="@+id/action_pinFrag_to_fingerPrint"
             app:destination="@id/fingerPrint" />
         <action
-            android:id="@+id/action_pinFrag_to_home2"
-            app:destination="@id/home2" />
+            android:id="@+id/action_pinFrag_to_bottomNav"
+            app:destination="@id/bottomNav" />
     </fragment>
     <fragment
         android:id="@+id/fingerPrint"
@@ -107,28 +107,8 @@
         android:label="fragment_finger_print"
         tools:layout="@layout/fragment_finger_print" >
         <action
-            android:id="@+id/action_fingerPrint_to_home2"
-            app:destination="@id/home2" />
-    </fragment>
-    <fragment
-        android:id="@+id/home2"
-        android:name="com.example.potea.Home"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_home2_to_myWishlist"
-            app:destination="@id/myWishlist" />
-        <argument android:name="WishlisT" />
-        <action
-            android:id="@+id/action_home2_to_itemFragment"
-            app:destination="@id/itemFragment" />
-        <action
-            android:id="@+id/action_home2_to_cardFragment"
-            app:destination="@id/cardFragment" />
-        <action
-            android:id="@+id/action_home2_to_profileSetting"
-            app:destination="@id/profileSetting" />
-
+            android:id="@+id/action_fingerPrint_to_bottomNav"
+            app:destination="@id/bottomNav" />
     </fragment>
     <fragment
         android:id="@+id/myWishlist"
@@ -141,17 +121,15 @@
         android:label="fragment_item"
         tools:layout="@layout/fragment_item" />
     <fragment
-        android:id="@+id/cardFragment"
-        android:name="com.example.potea.CardFragment"
-        android:label="fragment_card"
-        tools:layout="@layout/fragment_card" />
-    <fragment
-        android:id="@+id/profileSetting"
-        android:name="com.example.potea.ProfileSetting"
-        android:label="fragment_profile_setting"
-        tools:layout="@layout/fragment_profile_setting" >
+        android:id="@+id/bottomNav"
+        android:name="com.example.potea.BottomNav"
+        android:label="fragment_bottom_nav"
+        tools:layout="@layout/fragment_bottom_nav" >
         <action
-            android:id="@+id/action_profileSetting_to_home2"
-            app:destination="@id/home2" />
+            android:id="@+id/action_bottomNav_to_myWishlist"
+            app:destination="@id/myWishlist" />
+        <action
+            android:id="@+id/action_bottomNav_to_itemFragment"
+            app:destination="@id/itemFragment" />
     </fragment>
 </navigation>

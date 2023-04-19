@@ -69,14 +69,14 @@ class Home : Fragment() {
         val adapter = Adapter(list, requireContext(), object : Adapter.ItemClick {
             override fun OnItemClick(plant: Plant) {
                 val item = bundleOf("item" to plant)
-                findNavController().navigate(R.id.action_home2_to_itemFragment, item)
+                findNavController().navigate(R.id.action_bottomNav_to_itemFragment, item)
             }
 
         })
         val adapter2 = adapter2(list, requireContext(), object : Adapter.ItemClick {
             override fun OnItemClick(plant: Plant) {
                 val item = bundleOf("item" to plant)
-                findNavController().navigate(R.id.action_home2_to_itemFragment, item)
+                findNavController().navigate(R.id.action_bottomNav_to_itemFragment, item)
             }
 
         })
@@ -99,23 +99,15 @@ class Home : Fragment() {
             val bundle = bundleOf("wishlist" to wishlist)
             Log.d("TAG", "sent: ${wishlist.toString()}")
 
-            findNavController().navigate(R.id.action_home2_to_myWishlist, bundle)
+            findNavController().navigate(R.id.action_bottomNav_to_myWishlist, bundle)
         }
         binding.seeall1.setOnClickListener {
             val bundle = bundleOf("wishlist" to list)
-            findNavController().navigate(R.id.action_home2_to_myWishlist, bundle)
+            findNavController().navigate(R.id.action_bottomNav_to_myWishlist, bundle)
         }
         binding.seeall2.setOnClickListener {
             val bundle = bundleOf("wishlist" to list)
-            findNavController().navigate(R.id.action_home2_to_myWishlist, bundle)
-        }
-
-        binding.bottomNavigation.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.cart -> findNavController().navigate(R.id.action_home2_to_cardFragment)
-                R.id.profile -> findNavController().navigate(R.id.action_home2_to_profileSetting)
-            }
-            true
+            findNavController().navigate(R.id.action_bottomNav_to_myWishlist, bundle)
         }
         return binding.root
     }

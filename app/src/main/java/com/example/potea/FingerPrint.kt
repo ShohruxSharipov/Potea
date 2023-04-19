@@ -41,7 +41,7 @@ class FingerPrint : Fragment() {
             binding.congratulation.visibility = View.VISIBLE
 
             handler.postDelayed(
-                {findNavController().navigate(R.id.action_fingerPrint_to_home2)}
+                {findNavController().navigate(R.id.action_fingerPrint_to_bottomNav)}
             ,4000)
 
         }

@@ -66,7 +66,6 @@ class ProfileSetting : Fragment() {
             list[0] = user
             edit.putString("Profile",gson.toJson(list)).apply()
             Toast.makeText(requireContext(), "Succesful", Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_profileSetting_to_home2)
             Log.d("PAG", "LIST 222: ${list.toString()}")
         }
 
