@@ -140,7 +140,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout7" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/next1"
+        android:id="@+id/update"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginStart="24dp"

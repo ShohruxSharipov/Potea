@@ -1,10 +1,20 @@
 package com.example.potea
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
+import com.example.potea.User.Person
+import com.example.potea.User.User
+import com.example.potea.databinding.FragmentProfileSettingBinding
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,8 +43,34 @@ class ProfileSetting : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile_setting, container, false)
+        val binding = FragmentProfileSettingBinding.inflate(inflater,container,false)
+        val activity : AppCompatActivity = activity as AppCompatActivity
+        val type = object : TypeToken<List<Person>>() {}.type
+        val gson = Gson()
+        val cache = activity.getSharedPreferences("Cache", Context.MODE_PRIVATE)
+        val edit = cache.edit()
+
+        val str = cache.getString("Profile","")
+
+        var list = mutableListOf<Person>()
+        list = gson.fromJson(str, type)
+        Log.d("PAG", "LIST: ${list.toString()}")
+        val user = list[0]
+
+        binding.update.setOnClickListener {
+            user.first_name = binding.fullname.text.toString()
+            user.last_name = binding.nickname.text.toString()
+            user.number = binding.email.text.toString()
+            user.birth = binding.date.text.toString()
+
+            list[0] = user
+            edit.putString("Profile",gson.toJson(list)).apply()
+            Toast.makeText(requireContext(), "Succesful", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_profileSetting_to_home2)
+            Log.d("PAG", "LIST 222: ${list.toString()}")
+        }
+
+        return binding.root
     }
 
     companion object {

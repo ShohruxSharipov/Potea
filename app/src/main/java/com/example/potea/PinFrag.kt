@@ -42,7 +42,7 @@ class PinFrag : Fragment() {
         binding.next1.setOnClickListener {
             if (pin == ""){
                 cache.edit().putString("code",binding.firstPinView.text.toString()).commit()
-                Toast.makeText(requireContext(), "SERROR", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(requireContext(), "SERROR", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_pinFrag_to_fingerPrint)
             }else if (pin == binding.firstPinView.text.toString()){
                 findNavController().navigate(R.id.action_pinFrag_to_home2)

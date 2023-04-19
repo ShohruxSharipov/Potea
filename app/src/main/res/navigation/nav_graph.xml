@@ -125,6 +125,9 @@
         <action
             android:id="@+id/action_home2_to_cardFragment"
             app:destination="@id/cardFragment" />
+        <action
+            android:id="@+id/action_home2_to_profileSetting"
+            app:destination="@id/profileSetting" />
 
     </fragment>
     <fragment
@@ -142,4 +145,13 @@
         android:name="com.example.potea.CardFragment"
         android:label="fragment_card"
         tools:layout="@layout/fragment_card" />
+    <fragment
+        android:id="@+id/profileSetting"
+        android:name="com.example.potea.ProfileSetting"
+        android:label="fragment_profile_setting"
+        tools:layout="@layout/fragment_profile_setting" >
+        <action
+            android:id="@+id/action_profileSetting_to_home2"
+            app:destination="@id/home2" />
+    </fragment>
 </navigation>

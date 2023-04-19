@@ -8,11 +8,10 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.potea.Plant.Plant
 import com.example.potea.R
-import com.example.potea.databinding.SpecialoffersBinding
+import com.example.potea.databinding.Specialoffers2Binding
 
-class Adapter(var list:MutableList<Plant>,var context:Context, var itemclick:ItemClick):RecyclerView.Adapter<Adapter.MyHolder>(){
-
-    class MyHolder(binding: SpecialoffersBinding):RecyclerView.ViewHolder(binding.root){
+class adapter2 (var list:MutableList<Plant>, var context: Context, var itemclick: Adapter.ItemClick):RecyclerView.Adapter<adapter2.myHolder>(){
+    class myHolder(binding: Specialoffers2Binding): RecyclerView.ViewHolder(binding.root){
         var name = binding.name
         var cost = binding.cost
         var image = binding.image
@@ -20,17 +19,13 @@ class Adapter(var list:MutableList<Plant>,var context:Context, var itemclick:Ite
         var card = binding.cardView2
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
-        return MyHolder(SpecialoffersBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): myHolder {
+        return myHolder(Specialoffers2Binding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
 
-    override fun getItemCount(): Int {
-        return list.size
-    }
-
-    override fun onBindViewHolder(holder: MyHolder, position: Int) {
+    override fun onBindViewHolder(holder: myHolder, position: Int) {
         var like = false
-        val anim = AnimationUtils.loadAnimation(context,R.anim.anim_scale)
+        val anim = AnimationUtils.loadAnimation(context, R.anim.anim_scale)
         var plant = list[position]
         holder.image.setImageResource(plant.img)
         holder.name.text = plant.name
@@ -58,6 +53,12 @@ class Adapter(var list:MutableList<Plant>,var context:Context, var itemclick:Ite
             itemclick.OnItemClick(plant)
         }
     }
+
+    override fun getItemCount(): Int {
+        return list.size
+    }
+
+
     interface ItemClick{
         fun OnItemClick(plant: Plant)
     }

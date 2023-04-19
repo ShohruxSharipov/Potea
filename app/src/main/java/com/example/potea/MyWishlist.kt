@@ -10,7 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView.Adapter
+import com.example.potea.Button.Button
 import com.example.potea.Plant.Plant
+import com.example.potea.adapter.ButtonAdapter
 import com.example.potea.databinding.FragmentMyWishlistBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -44,14 +46,17 @@ class MyWishlist : Fragment() {
 
 
         val list = arguments?.getSerializable("wishlist") as MutableList<Plant>
+        val btns = mutableListOf<Button>(Button("ALl"),Button("White fl"),Button("Flowers"),Button("Kaktus"))
 
 //        Log.d("TAG", "onCreateView: ${list.toString()}")
-        val adapter = com.example.potea.adapter.Adapter(list, requireContext(),object : com.example.potea.adapter.Adapter.ItemClick{
+        val adapter = com.example.potea.adapter.adapter2(list, requireContext(),object : com.example.potea.adapter.Adapter.ItemClick{
             override fun OnItemClick(plant: Plant) {
                 val item = bundleOf("item" to plant)
                 findNavController().navigate(R.id.action_home2_to_itemFragment, item)
             }})
-        binding.recyclerView.adapter = adapter
+        val adapter2 = ButtonAdapter(btns)
+        binding.recyclerView.adapter = adapter2
+        binding.recyclerView2.adapter = adapter
 
 
 

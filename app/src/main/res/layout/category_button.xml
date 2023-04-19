@@ -2,10 +2,12 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/btnmain">
 
 <com.google.android.material.button.MaterialButton
-    android:layout_width="70dp"
+    android:id="@+id/btn"
+    android:layout_width="wrap_content"
     android:layout_height="40dp"
     android:backgroundTint="@color/white"
     android:text="All"
