@@ -55,15 +55,14 @@ class ProfileSetting : Fragment() {
         var list = mutableListOf<Person>()
         list = gson.fromJson(str, type)
         Log.d("PAG", "LIST: ${list.toString()}")
-        val user = list[0]
 
         binding.update.setOnClickListener {
-            user.first_name = binding.fullname.text.toString()
-            user.last_name = binding.nickname.text.toString()
-            user.number = binding.email.text.toString()
-            user.birth = binding.date.text.toString()
+            list[0].first_name = binding.fullname.text.toString()
+            list[0].last_name = binding.nickname.text.toString()
+            list[0].number = binding.email.text.toString()
+            list[0].birth = binding.date.text.toString()
 
-            list[0] = user
+
             edit.putString("Profile",gson.toJson(list)).apply()
             Toast.makeText(requireContext(), "Succesful", Toast.LENGTH_SHORT).show()
             Log.d("PAG", "LIST 222: ${list.toString()}")

@@ -44,6 +44,17 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView15"
         tools:listitem="@layout/card_pred" />
 
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="249dp"
+        android:layout_height="246dp"
+        android:layout_marginTop="100dp"
+        android:visibility="invisible"
+        android:background="@drawable/notfound"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/recyclerView2" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button2"
         style="outlined"
@@ -81,4 +92,30 @@
         app:layout_constraintEnd_toEndOf="@+id/textView16"
         app:layout_constraintStart_toStartOf="@+id/textView16"
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Your cart is empty"
+        android:visibility="invisible"
+        android:textColor="@color/black"
+        android:textSize="23sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView17"
+        app:layout_constraintStart_toStartOf="@+id/imageView17"
+        app:layout_constraintTop_toBottomOf="@+id/imageView17" />
+
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:visibility="invisible"
+        android:text="You don't have any items added to cart yet \n You need to add items to cart before \n checkout"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@+id/textView28"
+        app:layout_constraintStart_toStartOf="@+id/textView28"
+        app:layout_constraintTop_toBottomOf="@+id/textView28" />
 </androidx.constraintlayout.widget.ConstraintLayout>

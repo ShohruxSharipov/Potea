@@ -6,8 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.potea.Plant.Plant
 import com.example.potea.databinding.CardPredBinding
+import com.example.potea.dialog.MyDialogFragment
 
-class Card_adapter(val list:MutableList<Plant>):RecyclerView.Adapter<Card_adapter.myHolder>() {
+class Card_adapter(val list:MutableList<Plant>,var del:delete):RecyclerView.Adapter<Card_adapter.myHolder>() {
     class myHolder(val binding:CardPredBinding):RecyclerView.ViewHolder(binding.root){
         var image = binding.image
         var name = binding.name
@@ -32,7 +33,7 @@ class Card_adapter(val list:MutableList<Plant>):RecyclerView.Adapter<Card_adapte
         holder.name.text = item.name
         holder.cost.text = item.cost
         holder.del.setOnClickListener{
-            list.removeAt(position)
+            del.del(item)
             notifyDataSetChanged()
         }
 
@@ -49,5 +50,8 @@ class Card_adapter(val list:MutableList<Plant>):RecyclerView.Adapter<Card_adapte
              notifyDataSetChanged()
          }
         }
+    }
+    interface delete{
+        fun del(a:Plant)
     }
 }

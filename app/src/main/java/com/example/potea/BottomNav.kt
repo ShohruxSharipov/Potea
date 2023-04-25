@@ -36,11 +36,12 @@ class BottomNav : Fragment() {
     ): View? {
         val binding = FragmentBottomNavBinding.inflate(inflater,container,false)
 
+        parentFragmentManager.beginTransaction().add(R.id.changewindow,Home()).commit()
+
         binding.bottomNavigation.setOnItemSelectedListener {
 
             when (it.itemId) {
                 R.id.cart -> {
-//
                     parentFragmentManager.beginTransaction().replace(R.id.changewindow,CardFragment()).commit()
                 }
                 R.id.profile -> {
@@ -49,6 +50,9 @@ class BottomNav : Fragment() {
                 }
                 R.id.home -> {
                     parentFragmentManager.beginTransaction().replace(R.id.changewindow,Home()).commit()
+                }
+                R.id.history -> {
+                    parentFragmentManager.beginTransaction().replace(R.id.changewindow,CartaFragment()).commit()
                 }
             }
             true

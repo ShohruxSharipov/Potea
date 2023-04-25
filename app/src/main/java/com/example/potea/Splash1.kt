@@ -1,12 +1,17 @@
 package com.example.potea
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
+import com.example.potea.Plant.Plant
 import com.example.potea.databinding.FragmentSplash1Binding
+import com.google.gson.Gson
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,11 +36,37 @@ class Splash1 : Fragment() {
         }
     }
 
+    @SuppressLint("CommitPrefEdits")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentSplash1Binding.inflate(inflater,container,false)
+
+        val gson = Gson()
+        val activity : AppCompatActivity = activity as AppCompatActivity
+        val cache = activity.getSharedPreferences("Cache", Context.MODE_PRIVATE)
+        val edit = cache.edit()
+
+        val list = mutableListOf<Plant>()
+        list.add(Plant("GUl", "23", R.drawable.prayerplant, false,"Flowers"))
+        list.add(Plant("Prayer", "25", R.drawable.caktus, false,"white fl"))
+        list.add(Plant("Peperomiya", "40", R.drawable.prayerplant, false,"Flowers"))
+        list.add(Plant("Cactus", "50", R.drawable.caktus, false,"Kaktus"))
+        list.add(Plant("Vingle", "10", R.drawable.prayerplant, false,"white fl"))
+        list.add(Plant("GUl", "23", R.drawable.prayerplant, false,"Flowers"))
+        list.add(Plant("Prayer", "25", R.drawable.caktus, false,"white fl"))
+        list.add(Plant("Peperomiya", "40", R.drawable.prayerplant, false,"Flowers"))
+        list.add(Plant("Cactus", "50", R.drawable.caktus, false,"Kaktus"))
+        list.add(Plant("Vingle", "10", R.drawable.prayerplant, false,"white fl"))
+        list.add(Plant("GUl", "23", R.drawable.prayerplant, false,"Flowers"))
+        list.add(Plant("Prayer", "25", R.drawable.caktus, false,"white fl"))
+        list.add(Plant("Peperomiya", "40", R.drawable.prayerplant, false,"Flowers"))
+        list.add(Plant("Cactus", "50", R.drawable.caktus, false,"Kaktus"))
+        list.add(Plant("Vingle", "10", R.drawable.prayerplant, false,"white fl"))
+
+        var str = gson.toJson(list)
+        edit.putString("Items",str).apply()
 
         binding.next1.setOnClickListener {
             findNavController().navigate(R.id.action_splash1_to_splash2)

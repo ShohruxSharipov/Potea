@@ -1,13 +1,22 @@
 package com.example.potea
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.potea.Plant.Plant
+import com.example.potea.User.Person
 import com.example.potea.adapter.Card_adapter
 import com.example.potea.databinding.FragmentCardBinding
+import com.example.potea.dialog.MyDialogFragment
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,6 +32,7 @@ class CardFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    lateinit var bind: FragmentCardBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,20 +46,67 @@ class CardFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val bind = FragmentCardBinding.inflate(inflater,container,false)
+        bind = FragmentCardBinding.inflate(inflater, container, false)
         var list = mutableListOf<Plant>()
-        list.add(Plant("Peperomiya","30",R.drawable.prayerplant,false))
-        list.add(Plant("Peperomiya","30",R.drawable.prayerplant,false))
-        list.add(Plant("Peperomiya","30",R.drawable.prayerplant,false))
-        list.add(Plant("Peperomiya","30",R.drawable.prayerplant,false))
-        list.add(Plant("Peperomiya","30",R.drawable.prayerplant,false))
-        list.add(Plant("Peperomiya","30",R.drawable.prayerplant,false))
-        val a = Card_adapter(list)
+        val type = object : TypeToken<List<Plant>>() {}.type
+        val tokenn = object : TypeToken<MutableList<com.example.potea.User.Person>>() {}.type
+        val gson = Gson()
+        val activity: AppCompatActivity = activity as AppCompatActivity
+        val cache = activity.getSharedPreferences("Cache", Context.MODE_PRIVATE)
+        val edit = cache.edit()
+        val strt = cache.getString("Profile","")
+        var user = mutableListOf<com.example.potea.User.Person>()
+        user = gson.fromJson(strt,tokenn)
+
+        var str = cache.getString("card", "")
+        if (str != "") {
+            list = gson.fromJson(str, type)
+        }
+        val a = Card_adapter(list, object : Card_adapter.delete {
+            override fun del(a: Plant) {
+                val myDialogFragment = MyDialogFragment(list, a)
+                val manager = activity.supportFragmentManager
+                myDialogFragment.show(manager, "")
+                list = myDialogFragment.list
+                cost(list)
+                edit.putString("card", gson.toJson(list)).apply()
+            }
+        })
+        if (list.isEmpty()) {
+            bind.imageView17.visibility = View.VISIBLE
+            bind.textView28.visibility = View.VISIBLE
+            bind.textView29.visibility = View.VISIBLE
+        }
         bind.recyclerView2.adapter = a
+        cost(list)
+        bind.button2.setOnClickListener {
+            if (list.isNotEmpty()) {
+                edit.putString("history", gson.toJson(list)).apply()
+                list = mutableListOf()
+                for (i in list){
+                    user[0].balance -= i.cost.toInt()
+                }
+                edit.putString("Profile", gson.toJson(user)).apply()
+                Log.d("SAG", "onCreateView: ${user[0].balance}")
+                edit.putString("card", gson.toJson(list)).apply()
 
-
+                parentFragmentManager.beginTransaction().replace(R.id.changewindow, CartaFragment())
+                    .commit()
+            }else{
+                Toast.makeText(requireContext(), "You must add item first !", Toast.LENGTH_SHORT).show()
+            }
+        }
 
         return bind.root
+    }
+
+    @SuppressLint("SetTextI18n")
+    fun cost(list: MutableList<Plant>) {
+        var k = 0
+        for (i in list) {
+            k += i.cost.toInt()
+        }
+        bind.textView17.text = "$" + k.toString()
     }
 
     companion object {

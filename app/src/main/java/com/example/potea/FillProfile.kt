@@ -69,7 +69,8 @@ class FillProfile : Fragment() {
                     binding.date.text.toString(),
                     binding.email.text.toString(),
                     binding.number.text.toString(),
-                    true
+                    true,
+                    999
                 )
                 user_list.add(user)
                 val p = gson.toJson(user_list)

@@ -1,6 +1,7 @@
 package com.example.potea.adapter
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
@@ -10,7 +11,7 @@ import com.example.potea.Plant.Plant
 import com.example.potea.R
 import com.example.potea.databinding.SpecialoffersBinding
 
-class Adapter(var list:MutableList<Plant>,var context:Context, var itemclick:ItemClick):RecyclerView.Adapter<Adapter.MyHolder>(){
+class Adapter(var list:MutableList<Plant>,var context:Context, var itemclick:ItemClick,var likee:Likee):RecyclerView.Adapter<Adapter.MyHolder>(){
 
     class MyHolder(binding: SpecialoffersBinding):RecyclerView.ViewHolder(binding.root){
         var name = binding.name
@@ -34,23 +35,20 @@ class Adapter(var list:MutableList<Plant>,var context:Context, var itemclick:Ite
         var plant = list[position]
         holder.image.setImageResource(plant.img)
         holder.name.text = plant.name
-        holder.cost.text = plant.cost
+        holder.cost.text = "$" + plant.cost
         if (plant.like == false) {
             holder.like.setImageResource(R.drawable.baseline_favorite_border_24)
         }else holder.like.setImageResource(R.drawable.favorite)
 
         holder.like.setOnClickListener {
-            Toast.makeText(context, "LIKEE", Toast.LENGTH_SHORT).show()
-            if (plant.like == false){
-                holder.like.setImageResource(R.drawable.favorite)
-                holder.like.startAnimation(anim)
-                plant.like = true
-                notifyDataSetChanged()
-            }else {
+            if (like){
                 holder.like.setImageResource(R.drawable.baseline_favorite_border_24)
-                holder.like.startAnimation(anim)
-                plant.like = false
-                notifyDataSetChanged()
+                likee.OnLikeClick(position,true)
+                like = false
+            }else{
+                holder.like.setImageResource(R.drawable.favorite)
+                likee.OnLikeClick(position,false)
+                like = true
             }
 
         }
@@ -60,5 +58,8 @@ class Adapter(var list:MutableList<Plant>,var context:Context, var itemclick:Ite
     }
     interface ItemClick{
         fun OnItemClick(plant: Plant)
+    }
+    interface Likee{
+        fun OnLikeClick(position: Int,status:Boolean)
     }
 }
