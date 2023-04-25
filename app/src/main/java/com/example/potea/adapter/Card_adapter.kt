@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.potea.Plant.Plant
 import com.example.potea.databinding.CardPredBinding
 import com.example.potea.dialog.MyDialogFragment
+import okhttp3.internal.notifyAll
 
 class Card_adapter(val list:MutableList<Plant>,var del:delete):RecyclerView.Adapter<Card_adapter.myHolder>() {
     class myHolder(val binding:CardPredBinding):RecyclerView.ViewHolder(binding.root){
@@ -14,9 +15,9 @@ class Card_adapter(val list:MutableList<Plant>,var del:delete):RecyclerView.Adap
         var name = binding.name
         var cost = binding.cost
         var del = binding.del
-        var plus = binding.cardView3
+        var plus = binding.plus
         var minus = binding.minus
-        var count = binding.count.text.toString().toInt()
+        var count = binding.count
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): myHolder {
@@ -29,6 +30,7 @@ class Card_adapter(val list:MutableList<Plant>,var del:delete):RecyclerView.Adap
 
     override fun onBindViewHolder(holder: myHolder, position: Int) {
         val item = list[position]
+        var count = 1
         holder.image.setImageResource(item.img)
         holder.name.text = item.name
         holder.cost.text = item.cost
@@ -38,16 +40,18 @@ class Card_adapter(val list:MutableList<Plant>,var del:delete):RecyclerView.Adap
         }
 
         holder.plus.setOnClickListener{
-            holder.count++
-            holder.cost.text = (holder.cost.text.toString().toInt() * holder.count).toString()
-            notifyDataSetChanged()
-            Log.d("TAG", "onBindViewHolder: +++")
+            count++
+            holder.cost.text = (item.cost.toInt() * count).toString()
+            holder.count.text = count.toString()
+//            notifyItemChanged(position)
+            Log.d("SH", "count: +++${holder.cost}")
         }
-        holder.plus.setOnClickListener{
-         if (   holder.count != 0){
-             holder.count--
-             holder.cost.text = (holder.cost.text.toString().toInt() * holder.count).toString()
-             notifyDataSetChanged()
+        holder.minus.setOnClickListener{
+         if ( count != 1){
+             count--
+             holder.cost.text = (item.cost.toInt() * count).toString()
+             holder.count.text = count.toString()
+//             notifyItemChanged(position)
          }
         }
     }

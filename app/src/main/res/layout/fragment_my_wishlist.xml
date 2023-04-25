@@ -29,6 +29,34 @@
         app:layout_constraintStart_toEndOf="@+id/back"
         app:layout_constraintTop_toTopOf="@+id/back" />
 
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id="@+id/searc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:contextClickable="true"
+        app:boxCornerRadiusBottomEnd="20dp"
+        app:boxCornerRadiusBottomStart="20dp"
+        app:boxCornerRadiusTopEnd="20dp"
+        app:boxCornerRadiusTopStart="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/back"
+        app:layout_constraintEnd_toStartOf="@+id/imageView12"
+        app:layout_constraintStart_toEndOf="@+id/back"
+        app:layout_constraintTop_toTopOf="@+id/back"
+        app:startIconDrawable="@drawable/search">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/searC"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Search"
+            android:textColor="@color/black"
+            android:inputType="textWebEmailAddress"
+            android:cursorVisible="true"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
     <ImageView
         android:id="@+id/imageView12"
         android:layout_width="wrap_content"

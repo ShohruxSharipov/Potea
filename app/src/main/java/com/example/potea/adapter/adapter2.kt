@@ -30,6 +30,9 @@ class adapter2 (var list:MutableList<Plant>, var context: Context, var itemclick
         holder.image.setImageResource(plant.img)
         holder.name.text = plant.name
         holder.cost.text = "$" + plant.cost
+        if (position%2==0){
+            holder.card.startAnimation(AnimationUtils.loadAnimation(context,R.anim.anim_translate))
+        }else holder.card.startAnimation(AnimationUtils.loadAnimation(context,R.anim.anim_translate_2))
         if (plant.like == false) {
             holder.like.setImageResource(R.drawable.baseline_favorite_border_24)
         }else holder.like.setImageResource(R.drawable.favorite)

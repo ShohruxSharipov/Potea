@@ -114,7 +114,11 @@
         android:id="@+id/myWishlist"
         android:name="com.example.potea.MyWishlist"
         android:label="fragment_my_wishlist"
-        tools:layout="@layout/fragment_my_wishlist" />
+        tools:layout="@layout/fragment_my_wishlist" >
+        <action
+            android:id="@+id/action_myWishlist_to_itemFragment"
+            app:destination="@id/itemFragment" />
+    </fragment>
     <fragment
         android:id="@+id/itemFragment"
         android:name="com.example.potea.ItemFragment"

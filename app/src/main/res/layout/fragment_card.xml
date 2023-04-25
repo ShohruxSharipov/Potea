@@ -16,6 +16,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id="@+id/serc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:contextClickable="true"
+        android:visibility="invisible"
+        app:boxCornerRadiusBottomEnd="20dp"
+        app:boxCornerRadiusBottomStart="20dp"
+        app:boxCornerRadiusTopEnd="20dp"
+        app:boxCornerRadiusTopStart="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView15"
+        app:layout_constraintEnd_toStartOf="@+id/imageView16"
+        app:layout_constraintStart_toStartOf="@+id/imageView15"
+        app:layout_constraintTop_toTopOf="@+id/imageView15"
+        app:startIconDrawable="@drawable/search">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/serC"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:cursorVisible="true"
+            android:hint="Search"
+            android:inputType="textWebEmailAddress"
+            android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
+
     <ImageView
         android:id="@+id/imageView16"
         android:layout_width="39dp"
@@ -33,6 +60,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="8dp"
         android:orientation="vertical"

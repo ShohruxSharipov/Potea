@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
+import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.example.potea.Button.Button
@@ -18,6 +19,7 @@ import com.example.potea.adapter.adapter2
 import com.example.potea.databinding.FragmentMyWishlistBinding
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import kotlin.math.log
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -53,6 +55,12 @@ class MyWishlist : Fragment() {
         val cache = activity.getSharedPreferences("Cache", Context.MODE_PRIVATE)
         val  edit = cache.edit()
 
+        binding.imageView12.setOnClickListener{
+            binding.imageView12.visibility = View.INVISIBLE
+            binding.textView12.visibility = View.INVISIBLE
+            binding.searc.visibility = View.VISIBLE
+        }
+
         var list = mutableListOf<Plant>()
         val str = cache.getString("Items","")
         list = gson.fromJson(str,type2)
@@ -70,12 +78,41 @@ class MyWishlist : Fragment() {
             binding.textView28.visibility = View.VISIBLE
             binding.textView29.visibility = View.VISIBLE
         }
+        var filter = mutableListOf<Plant>()
+        binding.searC.addTextChangedListener {
+            filter = mutableListOf()
+            for (i in list2){
+                if (i.name.contains(it.toString())){
+                    filter.add(i)
+                }
+                Log.d("SAG", "onCreateView: ${filter}")
+            }
+            val adapter = com.example.potea.adapter.adapter2(filter, requireContext(),object : com.example.potea.adapter.Adapter.ItemClick{
+                override fun OnItemClick(plant: Plant) {
+                    val item = bundleOf("item" to plant)
+                    findNavController().navigate(R.id.action_myWishlist_to_itemFragment, item)
+                }},object : com.example.potea.adapter.Adapter.Likee{
+                override fun OnLikeClick(position: Int, status: Boolean) {
+                    list[position].like = !status
+                    Log.d("TAG", "LIKKEE: ${list}")
+                    edit.putString("Items",gson.toJson(list)).apply()
+                    val s = cache.getString("Items","")
+                    list = gson.fromJson(s,type2)
+                    Log.d("TAG", "LIKKEE@@@@@: ${list}")
+                }
 
-        val adapter = com.example.potea.adapter.adapter2(list2, requireContext(),object : com.example.potea.adapter.Adapter.ItemClick{
+            })
+            binding.recyclerView2.adapter = adapter
+        }
+
+        val adapter = com.example.potea.adapter.adapter2(list2
+            ,requireContext()
+            ,object : com.example.potea.adapter.Adapter.ItemClick{
             override fun OnItemClick(plant: Plant) {
                 val item = bundleOf("item" to plant)
-                findNavController().navigate(R.id.action_bottomNav_to_myWishlist, item)
-            }},object : com.example.potea.adapter.Adapter.Likee{
+                findNavController().navigate(R.id.action_myWishlist_to_itemFragment, item)
+            }}
+            ,object : com.example.potea.adapter.Adapter.Likee{
             override fun OnLikeClick(position: Int, status: Boolean) {
                 list[position].like = !status
                 Log.d("TAG", "LIKKEE: ${list}")

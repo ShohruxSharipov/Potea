@@ -133,44 +133,44 @@ class Home : Fragment() {
         }
 
 
-        binding.search.addTextChangedListener {
-            val dialog = Dialog(requireContext())
-            dialog.setContentView(R.layout.custom_dialog)
-            dialog.setCancelable(true)
-            dialog.show()
-
-            val filter = mutableListOf<Plant>()
-            if (it != null) {
-                for (i in list){
-                    if (i.name.contains(it)){
-                        filter.add(i)
-                    }
-                }
-            }
-//            Log.d("TAG", "onCreateView: ${filter}")
-
-            val bind = CustomDialogBinding.inflate(inflater,container,false)
-
-            val a = adapter2(list, requireContext(), object : Adapter.ItemClick {
-                override fun OnItemClick(plant: Plant) {
-                    val item = bundleOf("item" to plant)
-                    findNavController().navigate(R.id.action_bottomNav_to_itemFragment, item)
-                }
-
-            },object : Adapter.Likee{
-                override fun OnLikeClick(position: Int, status: Boolean) {
-                    list[position].like = !status
-                    Log.d("TAG", "LIKKEE: ${list}")
-                    edit.putString("Items",gson.toJson(list)).apply()
-                    val s = cache.getString("Items","")
-                    list = gson.fromJson(s,type2)
-                    Log.d("TAG", "LIKKEE@@@@@: ${list}")
-                }
-
-            })
-            bind.searchRV.adapter = a
-
-        }
+//        binding.search.addTextChangedListener {
+//            val dialog = Dialog(requireContext())
+//            dialog.setContentView(R.layout.custom_dialog)
+//            dialog.setCancelable(true)
+//            dialog.show()
+//
+//            val filter = mutableListOf<Plant>()
+//            if (it != null) {
+//                for (i in list){
+//                    if (i.name.contains(it)){
+//                        filter.add(i)
+//                    }
+//                }
+//            }
+////            Log.d("TAG", "onCreateView: ${filter}")
+//
+//            val bind = CustomDialogBinding.inflate(inflater,container,false)
+//
+//            val a = adapter2(list, requireContext(), object : Adapter.ItemClick {
+//                override fun OnItemClick(plant: Plant) {
+//                    val item = bundleOf("item" to plant)
+//                    findNavController().navigate(R.id.action_bottomNav_to_itemFragment, item)
+//                }
+//
+//            },object : Adapter.Likee{
+//                override fun OnLikeClick(position: Int, status: Boolean) {
+//                    list[position].like = !status
+//                    Log.d("TAG", "LIKKEE: ${list}")
+//                    edit.putString("Items",gson.toJson(list)).apply()
+//                    val s = cache.getString("Items","")
+//                    list = gson.fromJson(s,type2)
+//                    Log.d("TAG", "LIKKEE@@@@@: ${list}")
+//                }
+//
+//            })
+//            bind.searchRV.adapter = a
+//
+//        }
 
 
         return binding.root

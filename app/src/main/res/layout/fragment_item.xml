@@ -12,6 +12,7 @@
         android:id="@+id/imageView13"
         android:layout_width="match_parent"
         android:layout_height="271dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -42,13 +43,14 @@
 
     <ImageView
         android:id="@+id/like"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="47dp"
+        android:layout_height="47dp"
         android:layout_marginEnd="24dp"
         android:src="@drawable/baseline_favorite_border_24"
         app:layout_constraintBottom_toBottomOf="@+id/name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/name"
+        android:backgroundTint="@color/yashil"
         app:tint="#1DD14A" />
 
     <TextView

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.activity.OnBackPressedDispatcher
 import androidx.appcompat.app.AppCompatActivity
@@ -57,16 +58,41 @@ class ItemFragment : Fragment() {
         var str = cache.getString("card","")
         var card_list = mutableListOf<Plant>()
         Log.d("TAG", "onCreateView: ${str}")
+
+
+        if (!item.like){
+            binding.like.setBackgroundResource(R.drawable.baseline_favorite_border_24)
+        }else binding.like.setBackgroundResource(R.drawable.favorite)
+
+        binding.like.setOnClickListener{
+            it.startAnimation(AnimationUtils.loadAnimation(requireContext(),R.anim.anim_scale))
+            if (item.like){
+                it.setBackgroundResource(R.drawable.baseline_favorite_border_24)
+                item.like = false
+            }else {
+                it.setBackgroundResource(R.drawable.favorite)
+                item.like = true
+            }
+        }
+
+        binding.plus.setOnClickListener {
+            binding.count.text = (binding.count.text.toString().toInt() + 1).toString()
+            binding.cost.text = (item.cost.toInt() * binding.count.text.toString().toInt()).toString()
+        }
+        binding.minus.setOnClickListener {
+            if (binding.count.text.toString().toInt() != 1)
+            binding.count.text = (binding.count.text.toString().toInt() - 1).toString()
+            binding.cost.text = (item.cost.toInt() * binding.count.text.toString().toInt()).toString()
+        }
+
         binding.button.setOnClickListener{
             if (str != ""){
-                Toast.makeText(requireContext(), "topdi", Toast.LENGTH_SHORT).show()
                 card_list = gson.fromJson(str,type)
                 card_list.add(item)
                 var a = gson.toJson(card_list)
                 edit.putString("card",a).apply()
                 Toast.makeText(requireContext(), "Added", Toast.LENGTH_SHORT).show()
             }else {
-                Toast.makeText(requireContext(), "topolmadi", Toast.LENGTH_SHORT).show()
                 card_list.add(item)
                 var a = gson.toJson(card_list)
                 edit.putString("card",a).apply()

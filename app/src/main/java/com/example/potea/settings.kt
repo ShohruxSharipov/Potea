@@ -2,17 +2,13 @@ package com.example.potea
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.fragment.findNavController
 import com.example.potea.User.Person
-import com.example.potea.User.User
-import com.example.potea.databinding.FragmentProfileSettingBinding
+import com.example.potea.databinding.FragmentSettingsBinding
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -23,10 +19,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [ProfileSetting.newInstance] factory method to
+ * Use the [settings.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ProfileSetting : Fragment() {
+class settings : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -43,33 +39,25 @@ class ProfileSetting : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentProfileSettingBinding.inflate(inflater,container,false)
-        val activity : AppCompatActivity = activity as AppCompatActivity
-        val type = object : TypeToken<List<Person>>() {}.type
-        val gson = Gson()
-        val cache = activity.getSharedPreferences("Cache", Context.MODE_PRIVATE)
-        val edit = cache.edit()
-
-        val str = cache.getString("Profile","")
-
-        var list = mutableListOf<Person>()
-        list = gson.fromJson(str, type)
-        Log.d("PAG", "LIST: ${list.toString()}")
-
-        binding.update.setOnClickListener {
-            list[0].first_name = binding.fullname.text.toString()
-            list[0].last_name = binding.nickname.text.toString()
-            list[0].email = binding.email.text.toString()
-            list[0].number = binding.number.text.toString()
-            list[0].birth = binding.date.text.toString()
-
-
-            edit.putString("Profile",gson.toJson(list)).apply()
-            Toast.makeText(requireContext(), "Succesful", Toast.LENGTH_SHORT).show()
-            Log.d("PAG", "LIST 222: ${list.toString()}")
+        val bind = FragmentSettingsBinding.inflate(inflater,container,false)
+        bind.textView38.setOnClickListener {
+            parentFragmentManager.beginTransaction().replace(R.id.changewindow,ProfileSetting()).commit()
         }
 
-        return binding.root
+        val activity: AppCompatActivity = activity as AppCompatActivity
+        val cache = activity.getSharedPreferences("Cache", Context.MODE_PRIVATE)
+        val edit = cache.edit()
+        val type = object : TypeToken<List<Person>>() {}.type
+        val gson = Gson()
+        var b = mutableListOf<Person>()
+
+        val a = cache.getString("Profile", "")
+        b = gson.fromJson(a, type)
+        val user = b[0]
+        bind.textView31.text = user.first_name
+        bind.textView33.text = user.email
+
+        return bind.root
     }
 
     companion object {
@@ -79,12 +67,12 @@ class ProfileSetting : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment ProfileSetting.
+         * @return A new instance of fragment settings.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            ProfileSetting().apply {
+            settings().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

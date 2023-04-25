@@ -36,6 +36,7 @@ class Adapter(var list:MutableList<Plant>,var context:Context, var itemclick:Ite
         holder.image.setImageResource(plant.img)
         holder.name.text = plant.name
         holder.cost.text = "$" + plant.cost
+        holder.card.startAnimation(AnimationUtils.loadAnimation(context,R.anim.anim_alfa))
         if (plant.like == false) {
             holder.like.setImageResource(R.drawable.baseline_favorite_border_24)
         }else holder.like.setImageResource(R.drawable.favorite)

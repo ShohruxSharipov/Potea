@@ -1,6 +1,7 @@
 package com.example.potea
 
 import android.os.Bundle
+import android.provider.Settings
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -46,7 +47,7 @@ class BottomNav : Fragment() {
                 }
                 R.id.profile -> {
 //                    binding.scroll.visibility = View.INVISIBLE
-                    parentFragmentManager.beginTransaction().replace(R.id.changewindow,ProfileSetting()).commit()
+                    parentFragmentManager.beginTransaction().replace(R.id.changewindow,settings()).commit()
                 }
                 R.id.home -> {
                     parentFragmentManager.beginTransaction().replace(R.id.changewindow,Home()).commit()
