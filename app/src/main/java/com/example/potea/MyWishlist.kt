@@ -151,21 +151,21 @@ class MyWishlist : Fragment() {
                     }
                 }else{
                     if (a.name == "all"){
-                        category = list
+                        category = list2
                     }else if (a.name == "white fl"){
-                        for (i in list){
+                        for (i in list2){
                             if (i.category == "white fl"){
                                 category.remove(i)
                             }
                         }
                     }else if (a.name == "Flowers"){
-                        for (i in list){
+                        for (i in list2){
                             if (i.category == "Flowers"){
                                 category.remove(i)
                             }
                         }
                     }else{
-                        for (i in list){
+                        for (i in list2){
                             if (i.category == "Kaktus"){
                                 category.remove(i)
                             }
@@ -173,16 +173,16 @@ class MyWishlist : Fragment() {
                     }
                 }
                 if(category.isEmpty())
-                    category = list
+                    category = list2
                 binding.recyclerView2.adapter = adapter2(category, requireContext(),object : com.example.potea.adapter.Adapter.ItemClick{
                     override fun OnItemClick(plant: Plant) {
                         val item = bundleOf("item" to plant)
                         findNavController().navigate(R.id.action_bottomNav_to_myWishlist, item)
                     }},object : com.example.potea.adapter.Adapter.Likee{
                     override fun OnLikeClick(position: Int, status: Boolean) {
-                        list[position].like = !status
+                        list2[position].like = !status
                         Log.d("TAG", "LIKKEE: ${list}")
-                        edit.putString("Items",gson.toJson(list)).apply()
+                        edit.putString("Items",gson.toJson(list2)).apply()
                         val s = cache.getString("Items","")
                         list = gson.fromJson(s,type2)
                         Log.d("TAG", "LIKKEE@@@@@: ${list}")

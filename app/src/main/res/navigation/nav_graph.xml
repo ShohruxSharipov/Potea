@@ -99,7 +99,8 @@
             app:destination="@id/fingerPrint" />
         <action
             android:id="@+id/action_pinFrag_to_bottomNav"
-            app:destination="@id/bottomNav" />
+            app:destination="@id/bottomNav"
+            app:popUpTo="@id/nav_graph" />
     </fragment>
     <fragment
         android:id="@+id/fingerPrint"
@@ -108,7 +109,8 @@
         tools:layout="@layout/fragment_finger_print" >
         <action
             android:id="@+id/action_fingerPrint_to_bottomNav"
-            app:destination="@id/bottomNav" />
+            app:destination="@id/bottomNav"
+            app:popUpTo="@id/nav_graph" />
     </fragment>
     <fragment
         android:id="@+id/myWishlist"
